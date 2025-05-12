@@ -9,7 +9,7 @@
 }
 
 :root {
-  --hue: 90;
+  --hue: 280;
   --primary-color: hsl(var(--hue), 92%, 43%);
   --primary-hover: hsl(var(--hue), 92%, 33%);
   --secundary-color: hsl(0, 0%, 5%);
@@ -24,6 +24,7 @@
 
   --nav-height: 7.2rem;
 }
+
 
 html {
   scroll-behavior: smooth;
