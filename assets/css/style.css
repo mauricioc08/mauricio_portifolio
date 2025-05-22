@@ -55,6 +55,14 @@ body.light-mode {
   --paragraph-2: hsl(calc(var(--hue) + 10), 14%, 3%);
 }
 
+.container-lang {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* box-shadow: 0 0 0.8rem var(--primary-color); */
+}
+
 ::-webkit-scrollbar {
   width: 0.8rem;
 }
