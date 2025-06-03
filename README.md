@@ -1,8 +1,8 @@
-<h1 align="center">Portifólio - Lucyan 💻</h1>
+<h1 align="center">Portifólio - Mauricio Cassiano 💻</h1>
 
 ![Imagem do projeto finalizado](assets/images/projects/portifolio.png)
 
-<h4 align="center"><a href="https://lucyanovidio.vercel.app">Confira o projeto aqui</a></h4>
+<h4 align="center"><a href="#">Confira o projeto aqui</a></h4>
 
 ---
 
@@ -46,7 +46,7 @@ Neste projeto apliquei os seguintes pontos:
       <img src="https://github.com/lucyanovidio.png" width="100px" />
     </td>
     <td>
-      Feito por <a href="https://github.com/lucyanovidio">Lucyan Ovídio.</a> 🙋🏿‍♂️
+      Feito por <a href="https://github.com/lucyanovidio">Mauricio Cassiano.</a> 🙋🏿‍♂️
     </td>
   </tr>
 </table>
