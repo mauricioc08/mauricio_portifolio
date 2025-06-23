@@ -161,7 +161,7 @@ function projetos(section) {
             </div>
           </div>
           <p>
-            Este é um site de uma empresa que fornece sistemas empresariais. 
+            Este é um site de uma empresa Sirrus, que fornece sistemas empresariais, como Soluções Mobile, Desktop e On-line. 
           </p>
           <p>Nodejs - MongoDB - Nextjs - CMS</p>
         </div>
