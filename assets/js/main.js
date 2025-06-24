@@ -14,13 +14,6 @@ const vidro = document.querySelector("#vidro");
 window.addEventListener("load", function begin() {
   projetos(projectsSection);
   
-
-  desafioBtn.addEventListener("click", () => {
-    desafios(projectsSection);
-    document
-      .querySelector("#backToProjectsBtn")
-      .addEventListener("click", begin);
-  });
 });
 
 window.addEventListener("scroll", onScroll);
