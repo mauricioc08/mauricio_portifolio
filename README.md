@@ -8,7 +8,7 @@
 
 ## 💻 Sobre
 
-Projeto feito no intuito de me apresentar, como desenvolvedor web front-end.
+Projeto feito no intuito de me apresentar, como Desenvolvedor FullStack.
 
 ## 🤯 O site é composto por:
 
@@ -21,7 +21,6 @@ Projeto feito no intuito de me apresentar, como desenvolvedor web front-end.
 
 ## 🧠 Tecnologias utilizadas:
 
-O site **ainda está em desenvolvimento**, pois estou em constante aprendizado. Mas até aqui utilizei as tecnologias:
 
 <div>
     <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
@@ -36,21 +35,17 @@ Neste projeto apliquei os seguintes pontos:
 + Pontos de acessibilidade;
 + Responsividade;
 + Mobile first;
-+ Utilização da lib JS <a href="https://scrollrevealjs.org">Scroll Reveal</a>.
 
 ---
 
 <table>
   <tr>
     <td>
-      <img src="https://github.com/lucyanovidio.png" width="100px" />
+      <img src="https://github.com/mauricioc08.png" width="100px" />
     </td>
     <td>
-      Feito por <a href="https://github.com/lucyanovidio">Mauricio Cassiano.</a> 🙋🏿‍♂️
+      Feito por <a href="https://github.com/mauricioc08">Mauricio Cassiano.</a> 
     </td>
   </tr>
 </table>
 
-## 🏆 Licença
-
-The [MIT License](./LICENSE).
