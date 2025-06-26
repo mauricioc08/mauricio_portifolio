@@ -1,6 +1,7 @@
 <h1 align="center">Portifólio - Mauricio Cassiano 💻</h1>
 
-![Imagem do projeto finalizado](assets/images/projects/portifolio.png)
+![portifolio-Mauricio](https://github.com/user-attachments/assets/400d27a1-d94d-4893-9d87-1bab03befa5c)
+
 
 <h4 align="center"><a href="#">Confira o projeto aqui</a></h4>
 
