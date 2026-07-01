@@ -1,0 +1,106 @@
+// Strings de interface PT/EN. Aplicadas via [data-i18n] em modules/i18n.js.
+// As chaves espelham os atributos data-i18n no index.html.
+export const strings = {
+  pt: {
+    "meta.title": "Mauricio Cassiano — Desenvolvedor FullStack",
+    "nav.about": "Sobre",
+    "nav.experience": "Experiência",
+    "nav.projects": "Projetos",
+    "nav.skills": "Conhecimentos",
+    "nav.contact": "Contato",
+    "skip": "Pular para o conteúdo",
+
+    "hero.eyebrow": "Desenvolvedor FullStack",
+    "hero.title": "Eu construo produtos web que as pessoas usam de verdade.",
+    "hero.lead": "Olá, sou o Mauricio. Transformo ideias em interfaces responsivas, acessíveis e bem feitas — do front ao back.",
+    "hero.cta": "Vamos conversar",
+    "hero.cv": "Baixar CV",
+    "hero.term.cmd": "whoami",
+    "hero.term.out": "Mauricio Cassiano · Dev FullStack · Brasil",
+
+    "about.eyebrow": "Sobre mim",
+    "about.title": "Quem está por trás do código",
+    "about.body": "Desenvolvedor Web com mais de 1 ano de experiência em projetos full stack, focado em interfaces responsivas e intuitivas. Trabalho com HTML5, CSS3, JavaScript, ReactJS, Next.js, PHP, Node.js, MySQL e Docker. Tenho experiência com modelagem de banco de dados, integração de APIs, hospedagem em AWS e suporte ao cliente. Gosto de aprender, colaborar e contribuir para soluções que melhoram a experiência dos usuários.",
+    "about.photoAlt": "Mauricio Cassiano em seu setup de trabalho",
+
+    "exp.eyebrow": "Trajetória",
+    "exp.title": "Experiência",
+
+    "projects.eyebrow": "Trabalho",
+    "projects.title": "Projetos recentes",
+    "projects.repo": "Ver repositório",
+    "projects.live": "Ver projeto ao vivo",
+    "projects.soonTitle": "Em breve…",
+    "projects.soonBody": "Aprendizado constante. Novos projetos a caminho.",
+
+    "skills.eyebrow": "Stack",
+    "skills.title": "Conhecimentos",
+    "skills.frontend": "Front-end",
+    "skills.backend": "Back-end",
+    "skills.database": "Banco de dados",
+    "skills.devops": "Hospedagem / DevOps",
+
+    "contact.eyebrow": "Contato",
+    "contact.title": "Vamos trabalhar juntos",
+    "contact.lead": "Aberto a novas conexões e oportunidades. Me chame pelo canal que preferir.",
+    "contact.email": "Enviar e-mail",
+    "contact.phone": "Fazer ligação",
+    "contact.whatsapp": "WhatsApp",
+
+    "footer.rights": "Todos os direitos reservados.",
+    "theme.toggle": "Alternar tema",
+    "lang.toggle": "Mudar idioma",
+    "backToTop": "Voltar ao topo",
+  },
+  en: {
+    "meta.title": "Mauricio Cassiano — FullStack Developer",
+    "nav.about": "About",
+    "nav.experience": "Experience",
+    "nav.projects": "Projects",
+    "nav.skills": "Skills",
+    "nav.contact": "Contact",
+    "skip": "Skip to content",
+
+    "hero.eyebrow": "FullStack Developer",
+    "hero.title": "I build web products that people actually use.",
+    "hero.lead": "Hi, I'm Mauricio. I turn ideas into responsive, accessible, well-crafted interfaces — front to back.",
+    "hero.cta": "Let's talk",
+    "hero.cv": "Download CV",
+    "hero.term.cmd": "whoami",
+    "hero.term.out": "Mauricio Cassiano · FullStack Dev · Brazil",
+
+    "about.eyebrow": "About me",
+    "about.title": "The person behind the code",
+    "about.body": "Web developer with 1+ year of experience in full-stack projects, focused on responsive, intuitive interfaces. I work with HTML5, CSS3, JavaScript, ReactJS, Next.js, PHP, Node.js, MySQL and Docker. I have experience with database modeling, API integration, AWS hosting and customer support. I enjoy learning, collaborating and contributing to solutions that improve the user experience.",
+    "about.photoAlt": "Mauricio Cassiano at his workstation",
+
+    "exp.eyebrow": "Journey",
+    "exp.title": "Experience",
+
+    "projects.eyebrow": "Work",
+    "projects.title": "Recent projects",
+    "projects.repo": "View repository",
+    "projects.live": "View live project",
+    "projects.soonTitle": "Coming soon…",
+    "projects.soonBody": "Always learning. New projects on the way.",
+
+    "skills.eyebrow": "Stack",
+    "skills.title": "Skills",
+    "skills.frontend": "Front-end",
+    "skills.backend": "Back-end",
+    "skills.database": "Database",
+    "skills.devops": "Hosting / DevOps",
+
+    "contact.eyebrow": "Contact",
+    "contact.title": "Let's work together",
+    "contact.lead": "Open to new connections and opportunities. Reach me on whichever channel you prefer.",
+    "contact.email": "Send email",
+    "contact.phone": "Call",
+    "contact.whatsapp": "WhatsApp",
+
+    "footer.rights": "All rights reserved.",
+    "theme.toggle": "Toggle theme",
+    "lang.toggle": "Change language",
+    "backToTop": "Back to top",
+  },
+};
