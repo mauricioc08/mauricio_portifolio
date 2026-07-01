@@ -73,11 +73,13 @@ function soonCard() {
 
 function timelineItem(x) {
   const item = el("article", "tl-item glass reveal");
+  if (x.current) item.classList.add("tl-item--current");
   const head = el("div", "tl-head");
   const role = el("span", "tl-role", loc(x.role));
   const company = el("span", "tl-company", " · " + loc(x.company));
-  const roleLine = el("div");
+  const roleLine = el("div", "tl-role-line");
   roleLine.append(role, company);
+  if (x.current) roleLine.append(el("span", "tl-badge", t("exp.current")));
   head.append(roleLine, el("span", "tl-period", loc(x.period)));
   item.append(head, el("p", null, loc(x.description)));
 

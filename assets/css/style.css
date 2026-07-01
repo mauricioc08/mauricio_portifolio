@@ -586,12 +586,46 @@
     background: var(--accent);
     box-shadow: var(--glow);
   }
+  .tl-item--current {
+    border-color: color-mix(in oklab, var(--accent) 45%, var(--border));
+    background: color-mix(in oklab, var(--accent) 6%, var(--surface));
+  }
+  .tl-item--current::before {
+    animation: pulse-dot 2s ease-out infinite;
+  }
+  @keyframes pulse-dot {
+    0% {
+      box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 60%, transparent);
+    }
+    70% {
+      box-shadow: 0 0 0 10px transparent;
+    }
+    100% {
+      box-shadow: 0 0 0 0 transparent;
+    }
+  }
   .tl-head {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
     justify-content: space-between;
     gap: 0.5rem;
+  }
+  .tl-role-line {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .tl-badge {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    color: var(--on-accent);
+    background: var(--accent-grad);
   }
   .tl-role {
     font-family: var(--font-display);
@@ -619,8 +653,9 @@
 
   /* PROJECTS */
   .projects-grid {
+    --card-min: 20rem;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--card-min)), 1fr));
     gap: 1.4rem;
   }
   .project-card {
@@ -711,14 +746,21 @@
   }
 
   .project-card--soon {
+    /* span na linha inteira só para poder centralizar, mas com a largura
+       de um card normal (não 100%) via max-width + justify-self */
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 100%;
+    max-width: var(--card-min);
     display: grid;
     place-content: center;
+    justify-items: center;
     text-align: center;
     gap: 0.5rem;
-    padding: 2rem;
+    padding: 2.5rem 2rem;
     border-style: dashed;
     color: var(--muted);
-    min-height: 14rem;
+    min-height: 12rem;
   }
   .project-card--soon h3 {
     font-family: var(--font-display);

@@ -12,7 +12,7 @@ export const strings = {
 
     "hero.eyebrow": "Desenvolvedor FullStack",
     "hero.title": "Eu construo produtos web que as pessoas usam de verdade.",
-    "hero.lead": "Olá, sou o Mauricio. Transformo ideias em interfaces responsivas, acessíveis e bem feitas — do front ao back.",
+    "hero.lead": "Olá, sou o Mauricio. Atuo de ponta a ponta no desenvolvimento de produtos digitais — do front ao back e à entrega em produção.",
     "hero.cta": "Vamos conversar",
     "hero.cv": "Baixar CV",
     "hero.term.cmd": "whoami",
@@ -20,11 +20,12 @@ export const strings = {
 
     "about.eyebrow": "Sobre mim",
     "about.title": "Quem está por trás do código",
-    "about.body": "Desenvolvedor Web com mais de 1 ano de experiência em projetos full stack, focado em interfaces responsivas e intuitivas. Trabalho com HTML5, CSS3, JavaScript, ReactJS, Next.js, PHP, Node.js, MySQL e Docker. Tenho experiência com modelagem de banco de dados, integração de APIs, hospedagem em AWS e suporte ao cliente. Gosto de aprender, colaborar e contribuir para soluções que melhoram a experiência dos usuários.",
+    "about.body": "Desenvolvedor Full Stack com mais de 3 anos de experiência, unindo domínio técnico nas duas pontas a uma visão clara de processo e de negócio. No front, trabalho com JavaScript, React e Next.js; no back, com Ruby on Rails, PHP e MySQL — atuando em integração de sistemas, versionamento e deploy. Mais do que escrever código, gosto de entender o fluxo inteiro da entrega, com metodologias ágeis e gestão de fluxo. Sou proativo, autodidata e movido por aprendizado contínuo.",
     "about.photoAlt": "Mauricio Cassiano em seu setup de trabalho",
 
     "exp.eyebrow": "Trajetória",
     "exp.title": "Experiência",
+    "exp.current": "Atual",
 
     "projects.eyebrow": "Trabalho",
     "projects.title": "Projetos recentes",
@@ -39,6 +40,7 @@ export const strings = {
     "skills.backend": "Back-end",
     "skills.database": "Banco de dados",
     "skills.devops": "Hospedagem / DevOps",
+    "skills.practices": "Práticas",
 
     "contact.eyebrow": "Contato",
     "contact.title": "Vamos trabalhar juntos",
@@ -63,7 +65,7 @@ export const strings = {
 
     "hero.eyebrow": "FullStack Developer",
     "hero.title": "I build web products that people actually use.",
-    "hero.lead": "Hi, I'm Mauricio. I turn ideas into responsive, accessible, well-crafted interfaces — front to back.",
+    "hero.lead": "Hi, I'm Mauricio. I build digital products end to end — front to back and all the way to production.",
     "hero.cta": "Let's talk",
     "hero.cv": "Download CV",
     "hero.term.cmd": "whoami",
@@ -71,11 +73,12 @@ export const strings = {
 
     "about.eyebrow": "About me",
     "about.title": "The person behind the code",
-    "about.body": "Web developer with 1+ year of experience in full-stack projects, focused on responsive, intuitive interfaces. I work with HTML5, CSS3, JavaScript, ReactJS, Next.js, PHP, Node.js, MySQL and Docker. I have experience with database modeling, API integration, AWS hosting and customer support. I enjoy learning, collaborating and contributing to solutions that improve the user experience.",
+    "about.body": "Full Stack developer with 3+ years of experience, combining technical command of both ends with a clear sense of process and business. On the front I work with JavaScript, React and Next.js; on the back with Ruby on Rails, PHP and MySQL — handling system integration, version control and deployment. Beyond writing code, I like to understand the whole delivery flow, with agile methodologies and flow management. I'm proactive, self-taught and driven by continuous learning.",
     "about.photoAlt": "Mauricio Cassiano at his workstation",
 
     "exp.eyebrow": "Journey",
     "exp.title": "Experience",
+    "exp.current": "Now",
 
     "projects.eyebrow": "Work",
     "projects.title": "Recent projects",
@@ -90,6 +93,7 @@ export const strings = {
     "skills.backend": "Back-end",
     "skills.database": "Database",
     "skills.devops": "Hosting / DevOps",
+    "skills.practices": "Practices",
 
     "contact.eyebrow": "Contact",
     "contact.title": "Let's work together",
