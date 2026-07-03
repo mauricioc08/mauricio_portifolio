@@ -1,26 +1,164 @@
 @import "tailwindcss";
 
+/* ============================================================
+   Design tokens — dark (default). Migrados do portfólio vanilla.
+   Expostos ao Tailwind v4 via @theme para gerar utilities
+   (bg-bg, text-muted, border-border, font-display, etc.).
+   ============================================================ */
+@theme {
+  --color-bg: #0a0b0f;
+  --color-bg-2: #0e1017;
+  --color-surface: rgba(255, 255, 255, 0.045);
+  --color-surface-strong: rgba(255, 255, 255, 0.07);
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(255, 255, 255, 0.18);
+  --color-text: #e6e8ee;
+  --color-muted: #9ca3b4;
+  --color-faint: #6b7180;
+  --color-accent: #6ee7f9;
+  --color-accent-2: #7c5cff;
+  --color-on-accent: #05060a;
+
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  --text-step--1: clamp(0.8rem, 0.75rem + 0.2vw, 0.9rem);
+  --text-step-0: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-step-1: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-step-2: clamp(1.6rem, 1.3rem + 1.4vw, 2.25rem);
+  --text-step-3: clamp(2.2rem, 1.6rem + 2.8vw, 3.5rem);
+  --text-step-4: clamp(2.8rem, 1.9rem + 4.5vw, 5rem);
+
+  --radius-DEFAULT: 16px;
+  --radius-lg: 22px;
+}
+
+/* variáveis não-cor usadas em CSS custom (gradiente, glow, espaçamentos) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --accent-grad: linear-gradient(135deg, #6ee7f9, #7c5cff);
+  --glow: 0 0 0 1px rgba(110, 231, 249, 0.35),
+    0 8px 40px -8px rgba(110, 231, 249, 0.4);
+  --wrapper: 72rem;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --section-y: clamp(4.5rem, 10vw, 8rem);
+  --nav-h: 4.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ---------- LIGHT THEME (override via data-theme) ---------- */
+:root[data-theme="light"] {
+  --color-bg: #f7f8fb;
+  --color-bg-2: #eef0f6;
+  --color-surface: rgba(10, 12, 20, 0.03);
+  --color-surface-strong: rgba(10, 12, 20, 0.05);
+  --color-border: rgba(10, 12, 20, 0.1);
+  --color-border-strong: rgba(10, 12, 20, 0.16);
+  --color-text: #14161d;
+  --color-muted: #4a5163;
+  --color-faint: #7a8092;
+  --color-accent: #0891b2;
+  --color-accent-2: #6d3bf5;
+  --color-on-accent: #ffffff;
+  --accent-grad: linear-gradient(135deg, #0891b2, #6d3bf5);
+  --glow: 0 0 0 1px rgba(8, 145, 178, 0.3),
+    0 8px 34px -10px rgba(109, 59, 245, 0.32);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ---------- BASE ---------- */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  background-image: radial-gradient(
+      1200px 600px at 80% -10%,
+      color-mix(in oklab, var(--color-accent) 12%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 500px at -10% 10%,
+      color-mix(in oklab, var(--color-accent-2) 12%, transparent),
+      transparent 55%
+    );
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-accent) 40%, transparent);
+  color: var(--color-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 10px;
+}
+
+/* utilitário de layout reaproveitado */
+.wrapper {
+  width: 100%;
+  max-width: var(--wrapper);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* superfície de vidro (glassmorphism) */
+.glass {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-DEFAULT);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* gradiente de acento (CTA, badges, arte) */
+.accent-grad {
+  background: var(--accent-grad);
+}
+.accent-text {
+  color: var(--color-accent);
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-dot {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-accent) 60%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 10px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+/* ---------- MOTION PREFERENCES ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
