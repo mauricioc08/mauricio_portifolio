@@ -28,6 +28,31 @@ Design **dark elegante com glassmorphism**, tema claro/escuro, dois idiomas
 - ♿ **Acessível** — HTML semântico, skip-link, foco visível, ARIA e contraste.
 - 📄 **Download de CV** e **timeline de experiência**.
 - 📱 **Responsivo** (mobile-first) com menu adaptável.
+- 🔐 **Painel de admin** (opcional, via Firebase) — edite projetos, textos e
+  experiência sem mexer no código, com upload de imagem. Veja abaixo.
+
+## 🔐 Painel de administração (Firebase)
+
+O site funciona 100% estático **sem** o Firebase (usa os dados em
+`assets/js/data/` como fallback). Ativando o Firebase, você ganha um painel
+protegido por login em **`/admin`** para editar tudo dinamicamente:
+
+- **Projetos** — adicionar, editar, remover, reordenar, com **upload de imagem**.
+- **Experiência** — a timeline profissional.
+- **Textos das seções** — hero, sobre, contato (PT/EN).
+
+**Segurança:** leitura é pública, mas **escrita exige login como admin** (seu
+UID), validado pelas Security Rules nos servidores do Google — não no navegador.
+A `firebaseConfig` no front é pública por design (não é senha).
+
+**Como ativar:**
+1. Siga o [`FIREBASE_SETUP.md`](FIREBASE_SETUP.md) (auth + banco) e cole a regra
+   de `firebase/firestore.rules` no console.
+2. Siga o [`CLOUDINARY_SETUP.md`](CLOUDINARY_SETUP.md) para o upload de imagens
+   (grátis; substitui o Firebase Storage, que hoje exige plano pago).
+3. Preencha `assets/js/firebase/config.js` (Firebase + Cloudinary).
+4. No primeiro acesso ao `/admin`, clique em **"Importar meus dados atuais"**
+   para migrar o conteúdo de `assets/js/data/` para o banco.
 
 ## 🧩 O site é composto por
 

@@ -1,0 +1,37 @@
+rules_version = '2';
+
+// Regras do Firestore.
+// Leitura: pública (o site público lê projetos, experiência e textos).
+// Escrita: SOMENTE o admin autenticado (seu UID). Ninguém mais edita.
+//
+// UID de admin já preenchido com o seu (Authentication → Users).
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+             && request.auth.uid == "0ONJnhFcYvPQsjhh9Ykzcv4AZM23";
+    }
+
+    match /projects/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /experience/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /content/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // bloqueia qualquer outra coleção por padrão
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

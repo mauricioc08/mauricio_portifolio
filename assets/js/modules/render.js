@@ -1,9 +1,19 @@
 // Renderiza dados (projetos, timeline, social) no DOM com createElement.
 // Texto do usuário nunca vai como HTML cru (textContent), evitando injeção.
-import { projects } from "../data/projects.js";
-import { experience } from "../data/experience.js";
+// Os dados são injetados via setData() (locais ou vindos do Firestore).
+import { projects as localProjects } from "../data/projects.js";
+import { experience as localExperience } from "../data/experience.js";
 import { icons } from "./icons.js";
 import { t, getLang } from "./i18n.js";
+
+// store mutável — começa com os dados locais, atualizado por setData()
+let projects = localProjects;
+let experience = localExperience;
+
+export function setData(data) {
+  if (data?.projects) projects = data.projects;
+  if (data?.experience) experience = data.experience;
+}
 
 const el = (tag, cls, text) => {
   const n = document.createElement(tag);
