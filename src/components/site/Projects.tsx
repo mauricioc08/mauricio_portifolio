@@ -7,18 +7,35 @@ import { SectionTitle } from "@/components/ui/SectionTitle";
 import { GithubIcon, ExternalIcon, DotsIcon } from "@/components/ui/icons";
 import type { Project } from "@/types";
 
+// normaliza paths de imagem, inclusive dados legados do vanilla:
+//   "assets/images/projects/x.webp" → "/images/projects/x.webp"
+//   "images/x.webp"                 → "/images/x.webp"
+// URLs http(s) e paths já iniciados por "/" passam intactos.
+function normalizeSrc(src: string): string {
+  if (!src) return "";
+  if (src.startsWith("http") || src.startsWith("/")) return src;
+  return "/" + src.replace(/^assets\//, "");
+}
+
 function ProjectCard({ project }: { project: Project }) {
   const { t, lang } = useI18n();
+  const imageSrc = normalizeSrc(project.image);
   return (
     <article className="glass group flex flex-col overflow-hidden transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-border-strong hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.7)]">
       <div className="relative aspect-[16/10] overflow-hidden border-b border-border">
-        <Image
-          src={project.image}
-          alt={project.title}
-          width={880}
-          height={550}
-          className="h-full w-full object-cover object-top transition-[transform,filter] duration-500 [filter:saturate(0.95)] group-hover:scale-105 group-hover:[filter:saturate(1.1)]"
-        />
+        {imageSrc ? (
+          <Image
+            src={imageSrc}
+            alt={project.title}
+            width={880}
+            height={550}
+            className="h-full w-full object-cover object-top transition-[transform,filter] duration-500 [filter:saturate(0.95)] group-hover:scale-105 group-hover:[filter:saturate(1.1)]"
+          />
+        ) : (
+          <div className="grid h-full w-full place-items-center bg-surface-strong font-mono text-sm text-faint">
+            sem imagem
+          </div>
+        )}
         <div className="absolute bottom-3 right-3 flex translate-y-1.5 gap-2 opacity-0 transition-[opacity,transform] duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
           {project.links.repo && (
             <a

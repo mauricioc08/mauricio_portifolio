@@ -7,16 +7,17 @@ import { Skills } from "@/components/site/Skills";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
 import { BackToTop } from "@/components/site/BackToTop";
-import { projects as localProjects } from "@/data/projects";
-import { experience as localExperience } from "@/data/experience";
+import { ContentOverrides } from "@/components/site/ContentOverrides";
+import { getSiteContent } from "@/lib/firebase/data";
 
-export default function Home() {
-  // Fase 5 vai substituir por leitura do Firestore com fallback nestes locais.
-  const projects = localProjects;
-  const experience = localExperience;
+// revalida a cada hora (ISR); edições no admin refletem sem rebuild manual.
+export const revalidate = 3600;
+
+export default async function Home() {
+  const { projects, experience, content } = await getSiteContent();
 
   return (
-    <>
+    <ContentOverrides overrides={content}>
       <Header />
       <main id="main">
         <Hero />
@@ -28,6 +29,6 @@ export default function Home() {
       </main>
       <Footer />
       <BackToTop />
-    </>
+    </ContentOverrides>
   );
 }

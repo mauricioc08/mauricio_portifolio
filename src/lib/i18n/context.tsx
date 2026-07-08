@@ -18,18 +18,22 @@ type I18nContextValue = {
   setLang: (l: Lang) => void;
   toggle: () => void;
   t: (key: TranslationKey) => string;
+  setOverrides: (o: ContentDoc | null) => void;
 };
 
 const I18nContext = createContext<I18nContextValue | null>(null);
 
 export function I18nProvider({
   children,
-  overrides = null,
+  overrides: initialOverrides = null,
 }: {
   children: React.ReactNode;
   overrides?: ContentDoc | null;
 }) {
   const [lang, setLangState] = useState<Lang>("pt");
+  const [overrides, setOverrides] = useState<ContentDoc | null>(
+    initialOverrides
+  );
 
   // hidrata idioma salvo (ou do navegador) após montar — evita mismatch de SSR
   useEffect(() => {
@@ -65,7 +69,7 @@ export function I18nProvider({
   );
 
   const value = useMemo(
-    () => ({ lang, setLang, toggle, t }),
+    () => ({ lang, setLang, toggle, t, setOverrides }),
     [lang, setLang, toggle, t]
   );
 
