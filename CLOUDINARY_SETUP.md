@@ -41,23 +41,16 @@ Ainda no preset, você pode limitar a imagens:
 
 ---
 
-## 4. O que me enviar
+## 4. Onde colocar (`.env.local`)
 
-Cole aqui (ou direto em `assets/js/firebase/config.js`, no objeto
-`cloudinaryConfig`):
+Preencha no `.env.local`:
 
-1. **Cloud name** (passo 1).
-2. **Upload preset** (passo 2).
-
-Exemplo do que fica no `config.js`:
-
-```js
-export const cloudinaryConfig = {
-  cloudName: "dxxxx123",
-  uploadPreset: "portfolio_unsigned",
-  folder: "portfolio/projects",
-};
 ```
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=dxxxx123        # Cloud name (passo 1)
+NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=portfolio_unsigned  # Upload preset (passo 2)
+```
+
+São valores públicos (o upload unsigned é feito para ficar no browser).
 
 ---
 

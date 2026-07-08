@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
 import { projectsApi } from "@/lib/admin-api";
-import { projects as localProjects } from "@/data/projects";
+import { projects as seedProjects } from "@/data/projects";
 import type { Project } from "@/types";
-import { useToast } from "./AdminPanel";
+import { useCrudTab } from "./useCrudTab";
 import {
   Field,
   TextInput,
@@ -15,9 +14,7 @@ import {
   ImageUploadField,
 } from "./ui";
 
-type Draft = Omit<Project, "id"> & { id?: string };
-
-const empty = (order: number): Draft => ({
+const emptyProject = (order: number): Omit<Project, "id"> => ({
   title: "",
   description: { pt: "", en: "" },
   stack: [],
@@ -27,65 +24,23 @@ const empty = (order: number): Draft => ({
 });
 
 export function ProjectsTab() {
-  const toast = useToast();
-  const [items, setItems] = useState<Project[]>([]);
-  const [draft, setDraft] = useState<Draft | null>(null);
-  const [saving, setSaving] = useState(false);
-
-  const refresh = useCallback(async () => {
-    try {
-      setItems(await projectsApi.list());
-    } catch {
-      setItems([]);
-    }
-  }, []);
-
-  useEffect(() => {
-    refresh();
-  }, [refresh]);
-
-  const remove = async (id: string) => {
-    if (!confirm("Excluir este projeto?")) return;
-    try {
-      await projectsApi.remove(id);
-      toast("Projeto excluído ✓");
-      refresh();
-    } catch (e) {
-      toast((e as Error).message, true);
-    }
-  };
-
-  const save = async () => {
-    if (!draft) return;
-    setSaving(true);
-    try {
-      const { id, ...data } = draft;
-      await projectsApi.save(id ?? null, data);
-      toast("Projeto salvo ✓");
-      setDraft(null);
-      refresh();
-    } catch (e) {
-      toast((e as Error).message, true);
-    } finally {
-      setSaving(false);
-    }
-  };
-
-  const seed = async () => {
-    for (const p of localProjects) {
-      const { id, ...data } = p;
-      await projectsApi.save(id, data);
-    }
-    toast(`${localProjects.length} projetos importados ✓`);
-    refresh();
-  };
+  const { items, draft, setDraft, saving, remove, save, seed } = useCrudTab<Project>({
+    api: projectsApi,
+    seedData: seedProjects,
+    labels: {
+      saved: "Projeto salvo ✓",
+      deleted: "Projeto excluído ✓",
+      confirmDelete: "Excluir este projeto?",
+      seeded: (n) => `${n} projetos importados ✓`,
+    },
+  });
 
   return (
     <section>
       <div className="mb-6 flex items-center justify-between gap-4">
         <h2 className="font-display text-step-2">Projetos</h2>
         <button
-          onClick={() => setDraft(empty(items.length))}
+          onClick={() => setDraft(emptyProject(items.length))}
           className="accent-grad rounded-full px-[1.1rem] py-[0.6rem] font-semibold text-[color:var(--color-on-accent)]"
         >
           + Novo projeto

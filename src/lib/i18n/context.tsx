@@ -23,6 +23,15 @@ type I18nContextValue = {
 
 const I18nContext = createContext<I18nContextValue | null>(null);
 
+function readInitialLang(): Lang {
+  let saved: string | null = null;
+  try {
+    saved = localStorage.getItem(STORAGE_KEY);
+  } catch {}
+  if (saved === "pt" || saved === "en") return saved;
+  return navigator.language?.startsWith("en") ? "en" : "pt";
+}
+
 export function I18nProvider({
   children,
   overrides: initialOverrides = null,
@@ -35,19 +44,14 @@ export function I18nProvider({
     initialOverrides
   );
 
-  // hidrata idioma salvo (ou do navegador) após montar — evita mismatch de SSR
+  // hidrata idioma salvo (localStorage) ou do navegador após montar. Sistema
+  // externo (browser API) → não pode ser estado derivado nem inicializador
+  // (rodaria no SSR e daria mismatch). Efeito de sincronização legítimo.
   useEffect(() => {
-    let saved: string | null = null;
-    try {
-      saved = localStorage.getItem(STORAGE_KEY);
-    } catch {}
-    const initial: Lang = saved
-      ? (saved as Lang)
-      : navigator.language?.startsWith("en")
-        ? "en"
-        : "pt";
-    setLangState(initial);
+    const initial = readInitialLang();
     document.documentElement.lang = initial === "pt" ? "pt-BR" : "en";
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setLangState(initial);
   }, []);
 
   const setLang = useCallback((l: Lang) => {

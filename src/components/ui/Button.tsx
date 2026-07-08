@@ -19,7 +19,7 @@ type AnchorProps = ComponentProps<typeof Link> & {
   className?: string;
 };
 
-/** Botão-link (usa next/link para internos, mantém <a> para externos). */
+/** Botão-link (next/link para internos, <a> para externos). */
 export function ButtonLink({
   variant = "surface",
   className = "",
@@ -27,22 +27,5 @@ export function ButtonLink({
 }: AnchorProps) {
   return (
     <Link className={`${base} ${variants[variant]} ${className}`} {...props} />
-  );
-}
-
-type ButtonProps = ComponentProps<"button"> & {
-  variant?: Variant;
-};
-
-export function Button({
-  variant = "surface",
-  className = "",
-  ...props
-}: ButtonProps) {
-  return (
-    <button
-      className={`${base} ${variants[variant]} ${className}`}
-      {...props}
-    />
   );
 }

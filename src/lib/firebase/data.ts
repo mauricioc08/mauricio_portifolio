@@ -4,6 +4,7 @@ import "server-only";
 // disponível; se não houver service account ou der erro, cai no fallback local.
 // Assim o site nunca fica vazio e a home é renderizada no servidor (SEO).
 import { getAdminDb, adminEnabled } from "./admin";
+import { byOrder } from "@/lib/localized";
 import { projects as localProjects } from "@/data/projects";
 import { experience as localExperience } from "@/data/experience";
 import type {
@@ -12,10 +13,6 @@ import type {
   ContentDoc,
   SiteContent,
 } from "@/types";
-
-function byOrder<T extends { order?: number }>(a: T, b: T): number {
-  return (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER);
-}
 
 async function readCollection<T>(name: string): Promise<T[] | null> {
   const db = getAdminDb();

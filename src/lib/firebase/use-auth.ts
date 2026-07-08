@@ -27,6 +27,8 @@ export function useAuth() {
   useEffect(() => {
     const auth = getFirebaseAuth();
     if (!auth) {
+      // Firebase ausente: resolve o estado inicial sem assinatura.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setState({ ready: true, user: null, isAdmin: false });
       return;
     }

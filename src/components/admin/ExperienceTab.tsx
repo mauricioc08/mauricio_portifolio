@@ -1,18 +1,13 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
 import { experienceApi } from "@/lib/admin-api";
-import { experience as localExperience } from "@/data/experience";
-import type { Experience, MaybeLocalized } from "@/types";
-import { useToast } from "./AdminPanel";
+import { experience as seedExperience } from "@/data/experience";
+import type { Experience } from "@/types";
+import { loc } from "@/lib/localized";
+import { useCrudTab } from "./useCrudTab";
 import { Field, TextInput, TextArea, ItemRow, EmptyState, Modal } from "./ui";
 
-type Draft = Omit<Experience, "id"> & { id?: string };
-
-const loc = (v: MaybeLocalized | undefined, k: "pt" | "en") =>
-  v == null ? "" : typeof v === "object" ? (v[k] ?? "") : v;
-
-const empty = (order: number): Draft => ({
+const emptyExperience = (order: number): Omit<Experience, "id"> => ({
   role: { pt: "", en: "" },
   company: "",
   period: { pt: "", en: "" },
@@ -23,66 +18,25 @@ const empty = (order: number): Draft => ({
 });
 
 export function ExperienceTab() {
-  const toast = useToast();
-  const [items, setItems] = useState<Experience[]>([]);
-  const [draft, setDraft] = useState<Draft | null>(null);
-  const [saving, setSaving] = useState(false);
-
-  const refresh = useCallback(async () => {
-    try {
-      setItems(await experienceApi.list());
-    } catch {
-      setItems([]);
-    }
-  }, []);
-
-  useEffect(() => {
-    refresh();
-  }, [refresh]);
-
-  const remove = async (id: string) => {
-    if (!confirm("Excluir esta experiência?")) return;
-    try {
-      await experienceApi.remove(id);
-      toast("Experiência excluída ✓");
-      refresh();
-    } catch (e) {
-      toast((e as Error).message, true);
-    }
-  };
-
-  const save = async () => {
-    if (!draft) return;
-    setSaving(true);
-    try {
-      const { id, ...data } = draft;
-      await experienceApi.save(id ?? null, data);
-      toast("Experiência salva ✓");
-      setDraft(null);
-      refresh();
-    } catch (e) {
-      toast((e as Error).message, true);
-    } finally {
-      setSaving(false);
-    }
-  };
-
-  const seed = async () => {
-    for (const x of localExperience) {
-      const { id, ...data } = x;
-      await experienceApi.save(id, data);
-    }
-    toast(`${localExperience.length} experiências importadas ✓`);
-    refresh();
-  };
+  const { items, draft, setDraft, saving, remove, save, seed } =
+    useCrudTab<Experience>({
+      api: experienceApi,
+      seedData: seedExperience,
+      labels: {
+        saved: "Experiência salva ✓",
+        deleted: "Experiência excluída ✓",
+        confirmDelete: "Excluir esta experiência?",
+        seeded: (n) => `${n} experiências importadas ✓`,
+      },
+    });
 
   return (
     <section>
       <div className="mb-6 flex items-center justify-between gap-4">
         <h2 className="font-display text-step-2">Experiência</h2>
         <button
-          onClick={() => setDraft(empty(items.length))}
-          className="accent-grad rounded-full px-[1.1rem] py-[0.6rem] font-semibold text-[color:var(--color-on-accent)]"
+          onClick={() => setDraft(emptyExperience(items.length))}
+          className="accent-grad rounded-full px-[1.1rem] py-[0.6rem] font-semibold text-on-accent"
         >
           + Nova experiência
         </button>

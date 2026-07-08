@@ -3,11 +3,8 @@
 import { useI18n } from "@/lib/i18n/context";
 import { Eyebrow, Tag } from "@/components/ui/Tag";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import type { Experience as ExperienceItem, MaybeLocalized, Lang } from "@/types";
-
-function loc(v: MaybeLocalized, lang: Lang): string {
-  return typeof v === "object" ? (v[lang] ?? v.pt) : v;
-}
+import { loc } from "@/lib/localized";
+import type { Experience as ExperienceItem } from "@/types";
 
 export function Experience({ items }: { items: ExperienceItem[] }) {
   const { t, lang } = useI18n();

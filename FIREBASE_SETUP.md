@@ -71,15 +71,22 @@ Siga o [`CLOUDINARY_SETUP.md`](CLOUDINARY_SETUP.md) — leva ~3 min.
 
 ---
 
-## 6. O que me enviar
+## 6. Onde colocar (`.env.local`)
 
-Cole aqui pra mim (ou no arquivo `assets/js/firebase/config.js`, que eu deixo pronto):
+Copie o `.env.example` para `.env.local` e preencha com os valores dos passos acima:
 
-1. O objeto **`firebaseConfig`** do passo 2.
-2. O seu **User UID** do passo 3.4.
+```
+NEXT_PUBLIC_FIREBASE_API_KEY=...
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=...
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=...
+NEXT_PUBLIC_FIREBASE_APP_ID=...
+NEXT_PUBLIC_ADMIN_UID=...            # User UID do passo 3.4
+```
 
-Com isso eu finalizo a integração, migro seus dados atuais para o banco e
-ativamos o painel.
+Para as **escritas** (painel admin), também é preciso a **service account**
+(Admin SDK): Firebase Console → Configurações do projeto → **Contas de serviço**
+→ **Gerar nova chave privada**. Cole o JSON em UMA linha em
+`FIREBASE_SERVICE_ACCOUNT_KEY` (privado, nunca commitar).
 
 ---
 

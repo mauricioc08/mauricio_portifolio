@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { getFirebaseAuth } from "./firebase/client";
 import { getIdToken } from "./firebase/use-auth";
+import { byOrder } from "./localized";
 import type { Project, Experience, ContentDoc } from "@/types";
 
 function db() {
@@ -41,16 +42,13 @@ async function write(
   return res.json();
 }
 
-const bySortOrder = <T extends { order?: number }>(a: T, b: T) =>
-  (a.order ?? 1e9) - (b.order ?? 1e9);
-
 // ---------- Projetos ----------
 export const projectsApi = {
   async list(): Promise<Project[]> {
     const snap = await getDocs(collection(db(), "projects"));
     return snap.docs
       .map((d) => ({ id: d.id, ...d.data() }) as Project)
-      .sort(bySortOrder);
+      .sort(byOrder);
   },
   save: (id: string | null, data: Omit<Project, "id">) =>
     write("/api/projects", "POST", { id: id ?? undefined, data }),
@@ -64,7 +62,7 @@ export const experienceApi = {
     const snap = await getDocs(collection(db(), "experience"));
     return snap.docs
       .map((d) => ({ id: d.id, ...d.data() }) as Experience)
-      .sort(bySortOrder);
+      .sort(byOrder);
   },
   save: (id: string | null, data: Omit<Experience, "id">) =>
     write("/api/experience", "POST", { id: id ?? undefined, data }),
